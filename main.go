@@ -21,7 +21,6 @@ func MakeNoise2D(w int, h int) *Noise {
 
 	for i := 0; i < h; i++ {
 		for j := 0; j < w; j++ {
-			// n[i][j] = uint8(math.Pow(float64(rand.Intn(256)), float64(i+j)/float64(h+w)))
 			n[i][j] = uint8(rand.Intn(256))
 		}
 	}
