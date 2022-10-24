@@ -13,7 +13,7 @@ type Noise struct {
 	width    int
 }
 
-func make_noise2d(w int, h int) *Noise {
+func MakeNoise2D(w int, h int) *Noise {
 	n := make([][]uint8, h)
 	for i := range n {
 		n[i] = make([]uint8, w)
@@ -35,7 +35,7 @@ func make_noise2d(w int, h int) *Noise {
 	return &o
 }
 
-func draw_noise2d(n *Noise, c *gg.Context) {
+func DrawNoise2D(n *Noise, c *gg.Context) {
 	for i := 0; i < n.height; i++ {
 		for j := 0; j < n.width; j++ {
 			c.SetColor(color.Gray{n.elements[i][j]})
@@ -44,7 +44,7 @@ func draw_noise2d(n *Noise, c *gg.Context) {
 	}
 }
 
-func draw_noise2d_rgb(r *Noise, g *Noise, b *Noise, c *gg.Context) {
+func DrawNoise2D_RGB(r *Noise, g *Noise, b *Noise, c *gg.Context) {
 	if r.height != g.height || g.height != b.height {
 		panic("non-matching heights")
 	}
@@ -64,20 +64,3 @@ func draw_noise2d_rgb(r *Noise, g *Noise, b *Noise, c *gg.Context) {
 		}
 	}
 }
-
-// func main() {
-// 	os.Mkdir("out", os.ModeDir)
-
-// 	rand.Seed(time.Now().UnixMilli())
-// 	n := make_noise2d(100, 200)
-// 	dc := gg.NewContext(n.width, n.height)
-// 	draw_noise2d(n, dc)
-// 	dc.SavePNG("out/test.png")
-
-// 	r := make_noise2d(1000, 1000)
-// 	g := make_noise2d(1000, 1000)
-// 	b := make_noise2d(1000, 1000)
-// 	dc2 := gg.NewContext(r.width, r.height)
-// 	draw_noise2d_rgb(r, g, b, dc2)
-// 	dc2.SavePNG("out/test_rgb.png")
-// }
