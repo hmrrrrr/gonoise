@@ -8,9 +8,9 @@ import (
 )
 
 type Noise struct {
-	elements [][]uint8
-	height   int
-	width    int
+	Elements [][]uint8
+	Height   int
+	Width    int
 }
 
 func MakeNoise2D(w int, h int) *Noise {
@@ -26,37 +26,37 @@ func MakeNoise2D(w int, h int) *Noise {
 	}
 
 	o := Noise{
-		elements: n,
-		height:   h,
-		width:    w,
+		Elements: n,
+		Height:   h,
+		Width:    w,
 	}
 
 	return &o
 }
 
 func DrawNoise2D(n *Noise, c *gg.Context) {
-	for i := 0; i < n.height; i++ {
-		for j := 0; j < n.width; j++ {
-			c.SetColor(color.Gray{n.elements[i][j]})
+	for i := 0; i < n.Height; i++ {
+		for j := 0; j < n.Width; j++ {
+			c.SetColor(color.Gray{n.Elements[i][j]})
 			c.SetPixel(j, i)
 		}
 	}
 }
 
 func DrawNoise2D_RGB(r *Noise, g *Noise, b *Noise, c *gg.Context) {
-	if r.height != g.height || g.height != b.height {
+	if r.Height != g.Height || g.Height != b.Height {
 		panic("non-matching heights")
 	}
-	if r.width != g.width || g.width != b.width {
+	if r.Width != g.Width || g.Width != b.Width {
 		panic("non-matching widths")
 	}
 
-	for i := 0; i < r.height; i++ {
-		for j := 0; j < r.width; j++ {
+	for i := 0; i < r.Height; i++ {
+		for j := 0; j < r.Width; j++ {
 			c.SetColor(color.RGBA{
-				r.elements[i][j],
-				g.elements[i][j],
-				b.elements[i][j],
+				r.Elements[i][j],
+				g.Elements[i][j],
+				b.Elements[i][j],
 				uint8(255),
 			})
 			c.SetPixel(j, i)
